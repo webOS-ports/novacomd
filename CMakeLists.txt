@@ -20,7 +20,7 @@ project(novacomd C)
 include(webOS/webOS)
 include(FindPkgConfig)
 
-webos_modules_init(1 0 0 QUALIFIER RC4)
+webos_modules_init(1 6 3)
 webos_component(2 0 0)
 webos_machine_impl_dep()
 
@@ -35,7 +35,7 @@ file(GLOB cksum_files src/lib/cksum/*.c)
 file(GLOB novacom_files src/novacom/*.c)
 
 # Device and host have different sources
-if(${WEBOS_TARGET_MACHINE_IMPL} STREQUAL host)
+if((${WEBOS_TARGET_MACHINE_IMPL} STREQUAL host) OR (${WEBOS_TARGET_MACHINE_IMPL} STREQUAL guest))
 	pkg_check_modules(LIBUSB REQUIRED libusb)
 	include_directories(${LIBUSB_INCLUDE_DIRS})
 	webos_add_compiler_flags(ALL ${LIBUSB_CFLAGS_OTHER})
@@ -73,7 +73,7 @@ add_executable(novacomd ${lib_files}
 
 
 # Link against the libusb of host system when building standalone
-if(${WEBOS_TARGET_MACHINE_IMPL} STREQUAL host)
+if((${WEBOS_TARGET_MACHINE_IMPL} STREQUAL host) OR (${WEBOS_TARGET_MACHINE_IMPL} STREQUAL guest))
 	target_link_libraries(novacomd ${LIBUSB_LIBRARIES})
 else()
 	target_link_libraries(novacomd ${NYXLIB_LDFLAGS})

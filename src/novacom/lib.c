@@ -23,7 +23,7 @@
 
 #include <platform.h>
 #include <novacom.h>
-#ifndef WEBOS_TARGET_MACHINE_IMPL_HOST
+#ifndef WEBOS_TARGET_MACHINE_IMPL_HOST && WEBOS_TARGET_MACHINE_IMPL_GUEST
 #include <nyx/nyx_client.h>
 #endif
 #include "novacom_p.h"
@@ -40,7 +40,7 @@ void novacom_nduid_init(void)
 	}
 	nduid[NOVACOM_NDUID_CHRLEN] = '\0';
 
-#ifndef WEBOS_TARGET_MACHINE_IMPL_HOST
+#ifndef WEBOS_TARGET_MACHINE_IMPL_HOST && WEBOS_TARGET_MACHINE_IMPL_GUEST
 	nyx_device_handle_t device = NULL;
 	nyx_error_t error = NYX_ERROR_NONE;
 
@@ -63,7 +63,7 @@ void novacom_nduid_init(void)
 		nyx_deinit();
 	}
 
-#endif // !WEBOS_TARGET_MACHINE_IMPL_HOST
+#endif // !WEBOS_TARGET_MACHINE_IMPL_HOST && WEBOS_TARGET_MACHINE_IMPL_GUEST
 }
 
 const char * novacom_nduid(void)
