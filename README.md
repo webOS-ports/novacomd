@@ -19,12 +19,12 @@ How to build on Linux
 Below are the tools and libraries (and their minimum versions) required to
 build _novacomd_:
 
-* cmake (version required by openwebos/cmake-modules-webos)
+* cmake (version required by webosose/cmake-modules-webos)
 * gcc 4.6.3
 * glib-2.0 2.32.1
 * libusb 1.0.0 (needed only for the host build)
-* openwebos/cmake-modules-webos 1.0.0 RC4
-* openwebos/nyx-lib 3.0.0 RC1 (needed only for non-host builds)
+* webosose/cmake-modules-webos 1.6.2
+* webosose/nyx-lib 7.1.0 RC1 (needed only for non-host builds)
 * pkg-config 0.26
 
 ## Building
@@ -42,11 +42,11 @@ The directory under which the files are installed defaults to `/usr/local/webos`
 You can install them elsewhere by supplying a value for `WEBOS_INSTALL_ROOT`
 when invoking `cmake`. For example:
 
-    $ cmake -D WEBOS_INSTALL_ROOT:PATH=$HOME/projects/openwebos ..
+    $ cmake -D WEBOS_INSTALL_ROOT:PATH=$HOME/projects/webosose ..
     $ make
     $ make install
 
-will install the files in subdirectories of `$HOME/projects/openwebos`.
+will install the files in subdirectories of `$HOME/projects/webosose`.
 
 Specifying `WEBOS_INSTALL_ROOT` also causes `pkg-config` to look in that tree
 first before searching the standard locations. You can specify additional
